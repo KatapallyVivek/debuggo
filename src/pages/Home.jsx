@@ -7,28 +7,16 @@ export default function Home() {
 
   const handleExplain = async (errorText) => {
     if (!errorText.trim()) return;
+
     setLoading(true);
     setExplanation("");
 
-    const projectId = import.meta.env.VITE_TAMBO_PROJECT_ID;
-    const apiKey = import.meta.env.VITE_TAMBO_API_KEY;
-
     try {
-      const response = await fetch(
-        `https://api.tambo.co/v1/projects/${projectId}/errors:explain`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({ error: errorText }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      const response = await fetch("http://localhost:5000/api/explain", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ error: errorText }),
+  });
 
       const data = await response.json();
 
@@ -56,21 +44,8 @@ export default function Home() {
       </header>
 
       {/* MAIN */}
-      <main
-        className="
-          min-h-screen
-          pt-24 sm:pt-28
-          px-4 sm:px-6
-          bg-gradient-to-br from-[#0b0b16] via-[#171734] to-[#0b0b16]
-        "
-      >
-        <div
-          className="
-            max-w-6xl mx-auto
-            grid grid-cols-1 lg:grid-cols-2
-            gap-10 lg:gap-14
-          "
-        >
+      <main className="min-h-screen pt-24 sm:pt-28 px-4 sm:px-6 bg-gradient-to-br from-[#0b0b16] via-[#171734] to-[#0b0b16]">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
           {/* INPUT */}
           <section className="flex flex-col space-y-4">
             <h2 className="text-lg sm:text-xl font-medium text-white">
@@ -88,19 +63,9 @@ export default function Home() {
               Output
             </h2>
 
-            <div
-              className="
-                min-h-[240px] sm:min-h-[320px]
-                rounded-xl
-                bg-white/5
-                p-4 sm:p-6
-                overflow-y-auto
-              "
-            >
+            <div className="min-h-[240px] sm:min-h-[320px] rounded-xl bg-white/5 p-4 sm:p-6 overflow-y-auto">
               {loading && (
-                <p className="text-gray-400 animate-pulse">
-                  Thinking…
-                </p>
+                <p className="text-gray-400 animate-pulse">Thinking…</p>
               )}
 
               {!loading && explanation && (

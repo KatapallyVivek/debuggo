@@ -6,11 +6,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const handleExplain = async (errorText) => {
-    if (!errorText.trim()) return; 
+    if (!errorText.trim()) return;
     setLoading(true);
     setExplanation("");
 
-    const projectId = import.meta.env.VITE_TAMBO_PROJECT_ID; 
+    const projectId = import.meta.env.VITE_TAMBO_PROJECT_ID;
     const apiKey = import.meta.env.VITE_TAMBO_API_KEY;
 
     try {
@@ -31,38 +31,93 @@ export default function Home() {
       }
 
       const data = await response.json();
-      console.log("Tambo raw response:", data);
 
       setExplanation(
         data.explanation?.trim() ||
-          "Hmm… Tambo couldn’t explain this error. Try a different one!"
+          "AI couldn’t explain this error. Try another one."
       );
     } catch (err) {
       console.error(err);
-      setExplanation("Error fetching explanation. Try again later.");
+      setExplanation("Error fetching explanation.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start pt-16 px-4">
-      <h1 className="text-3xl font-bold mb-6">Explain This Error 🚀</h1>
+    <>
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+          <h1 className="text-lg sm:text-xl font-semibold text-white">
+            Debuggo<span className="text-indigo-400">.</span>
+          </h1>
+        </div>
+      </header>
 
-      {/* Error input */}
-      <ErrorInput onSubmit={handleExplain} />
+      {/* MAIN */}
+      <main
+        className="
+          min-h-screen
+          pt-24 sm:pt-28
+          px-4 sm:px-6
+          bg-gradient-to-br from-[#0b0b16] via-[#171734] to-[#0b0b16]
+        "
+      >
+        <div
+          className="
+            max-w-6xl mx-auto
+            grid grid-cols-1 lg:grid-cols-2
+            gap-10 lg:gap-14
+          "
+        >
+          {/* INPUT */}
+          <section className="flex flex-col space-y-4">
+            <h2 className="text-lg sm:text-xl font-medium text-white">
+              Input
+            </h2>
 
-      {/* Explanation box */}
-      <div className="mt-8 w-full max-w-xl">
-        {loading && <p className="text-gray-500">Analyzing error...</p>}
+            <div className="bg-white/5 rounded-xl p-4 sm:p-6">
+              <ErrorInput onSubmit={handleExplain} />
+            </div>
+          </section>
 
-        {!loading && explanation && (
-          <div className="p-4 bg-white rounded-lg shadow">
-            <h2 className="font-semibold mb-2">Explanation:</h2>
-            <p className="text-gray-700 whitespace-pre-wrap">{explanation}</p>
-          </div>
-        )}
-      </div>
-    </div>
+          {/* OUTPUT */}
+          <section className="flex flex-col space-y-4">
+            <h2 className="text-lg sm:text-xl font-medium text-white">
+              Output
+            </h2>
+
+            <div
+              className="
+                min-h-[240px] sm:min-h-[320px]
+                rounded-xl
+                bg-white/5
+                p-4 sm:p-6
+                overflow-y-auto
+              "
+            >
+              {loading && (
+                <p className="text-gray-400 animate-pulse">
+                  Thinking…
+                </p>
+              )}
+
+              {!loading && explanation && (
+                <p className="text-gray-200 whitespace-pre-wrap leading-relaxed text-sm sm:text-base">
+                  {explanation}
+                </p>
+              )}
+
+              {!loading && !explanation && (
+                <p className="text-gray-500 text-sm sm:text-base">
+                  Output will appear here.
+                </p>
+              )}
+            </div>
+          </section>
+        </div>
+      </main>
+    </>
   );
 }

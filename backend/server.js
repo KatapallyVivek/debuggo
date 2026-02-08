@@ -80,8 +80,7 @@ app.post("/api/explain", (req, res) => {
       break;
     }
   }
-
-  // simulate slight delay for realism
+  
   setTimeout(() => res.json({ explanation }), 500);
 });
 

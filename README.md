@@ -1,18 +1,61 @@
-# React + Vite
+# Debuggo🕵️‍♂️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Debuggo** is an **AI-powered web application** that helps developers understand and **fix programming errors instantly**. Users can paste an error message, and Debuggo uses **Tambo AI** to generate a clear, beginner-friendly explanation along with possible causes and suggestions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Frontend:** React (Vite), Tailwind CSS  
+- **Backend:** Node.js  
+- **AI Integration:** Tambo AI  
+- **Deployment:** Vercel  
+- **Version Control:** Git and Github
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## ⚙️ How It Works
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📝User pastes an error message into the input box.  
+- 🚀Frontend sends the input to the backend.  
+- 🔒Backend securely calls the **Tambo AI API**.  
+- 🤖Tambo analyzes the error and returns an explanation.  
+- 💡The response is displayed in the UI in real-time.  
+
+---
+
+## ✨ Features
+- 🕵️‍♂️Analyze error messages in real-time
+- 🤖Provides clear, AI-generated explanations
+- 💻Easy-to-use React frontend
+- 🔒Secure backend with Node.js
+- 🚀Deployment-ready on Vercel
+
+---
+
+## 📌 Use Cases
+
+- Students learning programming  
+- Developers debugging faster  
+- Hackathons and coding practice  
+
+---
+
+## 📂 Project Structure
+```md
+backend/
+  └── server.js
+src/
+├── components/
+│ └──ErrorInput.jsx
+├── pages/
+│ └── Home.jsx
+├── App.jsx
+└── main.jsx
+```
+---
+## 🤝 Contributing
+- 🥢Fork the repo
+- 🌿Create a new branch
+- 📝Make changes & submit a pull request

@@ -54,7 +54,12 @@ src/
 ├── App.jsx
 └── main.jsx
 ```
+
+## 🎥 Demo Video
+[▶️ Watch the demo video](https://drive.google.com/file/d/1MaEkO5qsxBpKKVXF2QMlc-W_03qZaXnT/view?usp=drivesdk)
+
 ---
+
 ## 🤝 Contributing
 - 🥢Fork the repo
 - 🌿Create a new branch
